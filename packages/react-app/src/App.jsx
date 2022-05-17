@@ -31,6 +31,8 @@ import deployedContracts from "./contracts/hardhat_contracts.json";
 import { Transactor, Web3ModalSetup } from "./helpers";
 import { Home, ExampleUI, Hints, Subgraph } from "./views";
 import { useStaticJsonRPC } from "./hooks";
+import HomePage from "./pages/Homepage";
+import ThemeSwitcher from "./components/ThemeSwitch";
 
 const { ethers } = require("ethers");
 /*
@@ -286,12 +288,9 @@ function App(props) {
         logoutOfWeb3Modal={logoutOfWeb3Modal}
         USE_NETWORK_SELECTOR={USE_NETWORK_SELECTOR}
       />
-      
 
-      
-
-      <ThemeSwitch />
-
+      <HomePage/>     
+      <ThemeSwitcher/> 
       
     </div>
   );
