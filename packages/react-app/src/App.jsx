@@ -290,7 +290,6 @@ function App(props) {
       />
 
       <HomePage/>     
-      <ThemeSwitcher/> 
       
     </div>
   );
