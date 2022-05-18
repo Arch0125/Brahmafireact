@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 .cont{
-    flex: auto;
-    flex-direction: row;
+    display: flex;
     text-align: left;
-    align-items: center;
-    justify-content: center;
-    padding-top: calc(100px + 6vh);
-    height: 100vh;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.cont > div{
+    display: flex;
+    flex-direction: column;
+    margin-top: calc(50px + 3vh);
+}
+
+.image{
+    width: calc(500px + 10vmax);
+    margin-right: 60px;
 }
 
 .header{
@@ -18,5 +27,19 @@
 }
 
 .purple{
-    color: #8F00FF;
+    background: -webkit-linear-gradient(#001AFF, #AD00FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+.purpbtn{
+    font-family: 'Montserrat','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #AD00FF;
+    color: white;
+    margin-left: 7vw;
+    font-size: calc(10px + 1vmax);
+    border: none;
+    border-radius: 50px;
+    padding: 10px 30px 10px 30px;
+    cursor: pointer;
+    }
