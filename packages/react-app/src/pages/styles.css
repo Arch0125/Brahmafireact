@@ -126,6 +126,7 @@
         color: #fff;
         outline: none;
         border: none;
+        cursor: pointer;
       }
       
       .listbutton:hover::before {

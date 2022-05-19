@@ -2,8 +2,12 @@ import React from 'react';
 import './styles.css'
 import logo from '../images/illus.png'
 import eth from '../images/eth.svg'
+import { useState, useEffect } from 'react';
 
 function TokenTracker() {
+
+    const[chainid,setChainid]=useState('');
+
     return ( 
         <div className='bgbody'>
             <div className='leftcont'>
@@ -17,10 +21,10 @@ function TokenTracker() {
                     </div>
                     <div className='tokencont'>
                         <label className='subtitle' >Select Chain</label>
-                        <button className='listbutton'><span className='listbutton-content'><img src={eth} className='crypto' /> Ethereum</span></button>
+                        <button onClick={e => setChainid('1')} className='listbutton'><span className='listbutton-content'><img src={eth} className='crypto' /> Ethereum</span></button>
                         <button className='listbutton'><span className='listbutton-content'><img src='https://cryptologos.cc/logos/solana-sol-logo.svg?v=022' className='crypto' /> Solana</span></button>
-                        <button className='listbutton'><span className='listbutton-content'><img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' className='crypto' /> Polygon</span></button>
-                        <button className='listbutton'><span className='listbutton-content'><img src='https://cryptologos.cc/logos/binance-usd-busd-logo.svg?v=022' className='crypto'/> Binance</span></button>
+                        <button onClick={e => setChainid('137')} className='listbutton'><span className='listbutton-content'><img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' className='crypto' /> Polygon</span></button>
+                        <button onClick={e => setChainid('56')}className='listbutton'><span className='listbutton-content'><img src='https://cryptologos.cc/logos/binance-usd-busd-logo.svg?v=022' className='crypto'/> Binance</span></button>
                     </div>
                 </div>
             </div>
