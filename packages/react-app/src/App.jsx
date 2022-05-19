@@ -1,4 +1,6 @@
 import { Button, Col, Menu, Row } from "antd";
+import { BrowserRouter} from "react-router-dom";
+import { Routes } from "react-router-dom";
 import "antd/dist/antd.css";
 import {
   useBalance,
@@ -277,19 +279,8 @@ function App(props) {
           </div>
         </div>
       </Header>
-      {yourLocalBalance.lte(ethers.BigNumber.from("0")) && (
-        <FaucetHint localProvider={localProvider} targetNetwork={targetNetwork} address={address} />
-      )}
-      <NetworkDisplay
-        NETWORKCHECK={NETWORKCHECK}
-        localChainId={localChainId}
-        selectedChainId={selectedChainId}
-        targetNetwork={targetNetwork}
-        logoutOfWeb3Modal={logoutOfWeb3Modal}
-        USE_NETWORK_SELECTOR={USE_NETWORK_SELECTOR}
-      />
-
-      <HomePage/>     
+      <HomePage/>
+      <ThemeSwitcher/> 
       
     </div>
   );
