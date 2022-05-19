@@ -12,8 +12,10 @@ function TokenTracker() {
         <div className='bgbody'>
             <div className='leftcont'>
                 <div>
+                    <a href='/'>
                     <img className='logo' src='https://i.ibb.co/6wNFYKv/icon.png'/>
                     <label className='logotitle'><span className='purple'>ReKarma</span></label>
+                    </a>
                     <div className='tokencont'>
                         <label className='subtitle'>Account Details</label>
                         <label className='smalltext'> 0x0cb4r...5r9 </label>
