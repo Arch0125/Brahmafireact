@@ -7,7 +7,7 @@ function HomePage() {
         <div className='cont'>
             <div>
             <p className='header' >Welcome <br/>To <br/><span className='purple'>ReKarma</span> </p>
-            <button className='purpbtn'>Get Started</button>
+            <a href="/tokentracker" ><button className='purpbtn'>Get Started</button></a>
             </div>
             <div>
                 <img src={illus} className='image' />

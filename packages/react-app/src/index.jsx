@@ -8,6 +8,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
 import HomePage from "./pages/Homepage";
+import TokenTracker from "./pages/TokenTracker";
 
 const themes = {
   dark: `${process.env.PUBLIC_URL}/dark-theme.css`,
@@ -29,6 +30,7 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App subgraphUri={subgraphUri} />}/>
+          <Route path="/tokentracker" element={<TokenTracker/>} />
         </Routes>
         
       </BrowserRouter>
