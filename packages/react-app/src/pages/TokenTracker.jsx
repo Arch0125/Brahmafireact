@@ -4,9 +4,14 @@ import logo from '../images/illus.png'
 import eth from '../images/eth.svg'
 import { useState, useEffect } from 'react';
 
-function TokenTracker() {
+const TokenTracker = () => {
 
     const[chainid,setChainid]=useState('');
+    const[searchaddr,setSearchaddr]=useState('');
+
+    const showaddr = () =>{
+        console.log(searchaddr);
+    }
 
     return ( 
         <div className='bgbody'>
@@ -36,8 +41,9 @@ function TokenTracker() {
                 <br/>
                 <div className='rightbox' >
                     <label className='subtitle' >Enter Token Address</label>
-                    <input className='searchbox' type='text'/>
-                    <button className='listbutton'><span className='listbutton-content'>Search</span></button>
+                    <input className='searchbox' type='text' onChange={e => setSearchaddr(e.target.value)}/>
+                    <label>{searchaddr}</label>
+                    <button className='listbutton'><span className='listbutton-content' onClick={showaddr}>Search</span></button>
                 </div>
                 <table className='tokenslist'>
                     <thead>

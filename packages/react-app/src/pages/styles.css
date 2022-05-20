@@ -4,8 +4,27 @@
     background-image: url("https://i.ibb.co/QdH4WYb/bg7.png");
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 120vh;
     flex-wrap: wrap;
+}
+
+#govlist{
+  width: calc(400px + 8vw);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#govsearch{
+  width: calc(600px + 8vw) !important;
+}
+
+#govright{
+  margin-left: 80px;
+}
+
+#govleft{
+  width: calc(400px + 8vw);
 }
 
 .leftcont{
@@ -117,7 +136,7 @@
         font-family: 'Montserrat','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         position: relative;
         overflow: hidden;
-        height: 40px;
+        height: 50px;
         width: 200px;
         padding: 5px 30px 5px 30px;
         border-radius: 1.5rem;
