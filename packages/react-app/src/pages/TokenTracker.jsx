@@ -3,14 +3,66 @@ import './styles.css'
 import logo from '../images/illus.png'
 import eth from '../images/eth.svg'
 import { useState, useEffect } from 'react';
+import { ETHERSCAN_KEY } from '../constants';
+
+const COV_KEY = 'ckey_eaca57491e9e4b3dab0ed5ab8dc'
+
+const axios = require('axios').default;
 
 const TokenTracker = () => {
 
     const[chainid,setChainid]=useState('');
     const[searchaddr,setSearchaddr]=useState('');
+const key = "FB9T6ZRC7NHVQ9TUU51MM9BVX8Q2FXVMV4"
+const url = `https://api.etherscan.io/api?module=account&action=tokentx&address=${searchaddr}&page=1&offset=1000&startblock=0&endblock=999999999&sort=asc&apikey=${ETHERSCAN_KEY}`
+//const url = `https://api.covalenthq.com/v1/1/address/0x4E83362442B8d1beC281594cEa3050c8EB01311C/portfolio_v2/?&key=ckey_eaca57491e9e4b3dab0ed5ab8dc`
 
-    const showaddr = () =>{
+const getTokenInfo = async () =>{
+    axios.get(url)
+      .then(function (response) {
+        const res = response.data.result;
+
+        //console.log(response.data.data.items); For Covalent Usecase
+        const data =[]
+        const userAddressMap = new Map(); 
+        const userHoldingMap = new Map();
+        for (let index in res) {
+
+            const dataObj = {
+                to: res[index].to,
+                from: res[index].from,
+                tokenAddress: res[index].contractAddress,
+                tokenSymbol:res[index].tokenSymbol,
+                tokenName:res[index].tokenSymbol,
+            }  
+            
+            if(!userAddressMap.get(res[index].contractAddress)){
+                userAddressMap.set(res[index].contractAddress,true);
+                userHoldingMap.set(res[index].contractAddress, res[index].timeStamp);
+            }
+            
+            if(Number(userHoldingMap.get(res[index].contractAddress)) >= Number(res[index].timeStamp)){
+                userHoldingMap.set(res[index].contractAddress, res[index].timeStamp);
+            }
+           
+            
+            data.push(dataObj)
+          }
+          console.log(userAddressMap)
+          console.log(userHoldingMap)
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      }); 
+}
+
+
+    const showaddr = async () =>{
         console.log(searchaddr);
+        await getTokenInfo();
     }
 
     return ( 
