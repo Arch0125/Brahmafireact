@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { ETHERSCAN_KEY } from "../constants";
 import { getAddressInfo, getAddressInfoFromCovalent, getAddressInfoFromEtherscan } from "../helpers/apis";
 
-const COV_KEY = "ckey_eaca57491e9e4b3dab0ed5ab8dc";
 
 const axios = require("axios").default;
 
@@ -15,7 +14,6 @@ const TokenTracker = () => {
   const [searchaddr, setSearchaddr] = useState("");
 
   const showaddr = async () => {
-    console.log("Coming here");
     await getAddressInfo(searchaddr);
   };
 

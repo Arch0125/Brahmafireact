@@ -1,6 +1,7 @@
 import { COVALENT_API_KEY, COVALENT_BASE_URL, ETHERSCAN_API_KEY, ETHERSCAN_BASE_URL } from "./constants";
 
 const axios = require("axios");
+const moment = require("moment");
 
 export const getAddressInfoFromEtherscan = async address => {
   const endpoint = `${ETHERSCAN_BASE_URL}?module=account&action=tokentx&address=${address}&sort=asc&apikey=${ETHERSCAN_API_KEY}`;
@@ -63,10 +64,17 @@ export const getAddressInfo = async address => {
     if (parseInt(balance) > 0) {
       const firstTimeHeld = await getHoldingTimeInfoByAddress(address, contractAddress);
 
+      const currentTimeStamp = Math.floor(new Date().valueOf() / 1000);
+
+      console.log(currentTimeStamp, firstTimeHeld);
+      console.log(currentTimeStamp - firstTimeHeld);
+
+      const timeHeld = moment.duration(moment.unix(currentTimeStamp) - moment.unix(parseInt(firstTimeHeld)));
+
       contractsDict[contractAddress] = {
         ...contractsDict[contractAddress],
         firstTimeHeld,
-        balance,
+        timeHeld,
       };
     } else {
       delete contractsDict[contractAddress];
