@@ -8,15 +8,22 @@ import { getCastVoteDetails } from '../helpers/apis';
 
 function Governance() {
 
-    const[chainid,setChainid]=useState('');
-
+        const[address,setAddress]=useState('');
+        const[govaddress,setGovaddress]=useState('');
     
         const DisplayData = govdata.map((info)=>
         {
+            var addr = (info.address);
             return(
-                <button className='listbutton'><span className='listbutton-content'><img src={info.logo} className='crypto' />  {info.name}</span></button>
+                <button onClick={() => setGovaddress(addr)} className='listbutton'><span className='listbutton-content'><img src={info.logo} className='crypto' />  {info.name}</span></button>
             )
-        })     
+        })
+        
+        const getVotingDetails =() =>{
+            getCastVoteDetails(address,govaddress);
+            console.log(govaddress);
+            console.log(address);
+        }
 
     return ( 
         <div className='bgbody'>
@@ -38,15 +45,14 @@ function Governance() {
                         {DisplayData}
                     </div>
                 </div>
-                <button onClick={getCastVoteDetails}>Get Vote</button>
             </div>
             <div id='govright' className='rightcont'>
             <label className='logotitle'><span className='purple'>Governance Tracker</span> </label>
                 <br/>
                 <div id='govsearch' className='rightbox' >
-                    <label className='subtitle' >Enter Account Address</label>
-                    <input className='searchbox' type='text'/>
-                    <button className='listbutton'><span className='listbutton-content'>Search</span></button>
+                    <label className='subtitle'  >Enter Account Address</label>
+                    <input onChange={(e) => setAddress(e.target.value)} className='searchbox' type='text'/>
+                    <button onClick={getVotingDetails} className='listbutton'><span className='listbutton-content'>Search</span></button>
                 </div>
                 <table id='govsearch' className='tokenslist'>
                     <thead>
