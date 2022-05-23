@@ -10,6 +10,7 @@ function Governance() {
 
         const[address,setAddress]=useState('');
         const[govaddress,setGovaddress]=useState('');
+        const[votelist,setVotelist]=useState([]);
     
         const DisplayData = govdata.map((info)=>
         {
@@ -19,10 +20,12 @@ function Governance() {
             )
         })
         
-        const getVotingDetails =() =>{
-            getCastVoteDetails(address,govaddress);
-            console.log(govaddress);
-            console.log(address);
+        const getVotingDetails = async() =>{
+            var temp = await getCastVoteDetails(address,govaddress);
+
+            console.log(temp);
+            setVotelist(temp);
+            console.log(votelist);
         }
 
     return ( 
@@ -54,15 +57,26 @@ function Governance() {
                     <input onChange={(e) => setAddress(e.target.value)} className='searchbox' type='text'/>
                     <button onClick={getVotingDetails} className='listbutton'><span className='listbutton-content'>Search</span></button>
                 </div>
+                
                 <table id='govsearch' className='tokenslist'>
                     <thead>
                         <tr>
-                            <th>Token</th>
-                            <th>Address</th>
-                            <th>Time held</th>
-                            <th>Current Balance</th>
+                            <th>Block Number</th>
+                            <th>Voter</th>
+                            <th>Time Stamp</th>
+                            <th>Tx Hash</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        {votelist.map((voteinfo,key) =>(
+                    <tr key={key}>
+                        <td>{voteinfo.blockNumber}</td>
+                        <td>{voteinfo.voter}</td>
+                        <td>{voteinfo.timestamp}</td>
+                        <td>{voteinfo.txhash}</td>
+                    </tr>
+                ))}
+                    </tbody>
                 </table>
             </div>
 

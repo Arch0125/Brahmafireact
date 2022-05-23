@@ -29,8 +29,7 @@ export const getCastVoteDetails = async(address,govaddress) => {
       uservotes.push(uservotedetails);
     }
   }
-  console.log(uservotes);
-  return votedetails;
+  return uservotes;
 }
 
 export const getHoldingTimeInfoByAddress = async (address, contractAddress) => {
