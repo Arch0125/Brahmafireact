@@ -3,7 +3,8 @@ import './styles.css'
 import logo from '../images/illus.png'
 import eth from '../images/eth.svg'
 import { useState, useEffect } from 'react';
-import govdata from './governance.json'
+import govdata from './Governance.json'
+import { getCastVoteDetails } from '../helpers/apis';
 
 function Governance() {
 
@@ -15,10 +16,7 @@ function Governance() {
             return(
                 <button className='listbutton'><span className='listbutton-content'><img src={info.logo} className='crypto' />  {info.name}</span></button>
             )
-        })
-    
-
-    
+        })     
 
     return ( 
         <div className='bgbody'>
@@ -40,6 +38,7 @@ function Governance() {
                         {DisplayData}
                     </div>
                 </div>
+                <button onClick={getCastVoteDetails}>Get Vote</button>
             </div>
             <div id='govright' className='rightcont'>
             <label className='logotitle'><span className='purple'>Governance Tracker</span> </label>

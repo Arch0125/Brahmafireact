@@ -9,7 +9,7 @@ import App from "./App";
 import "./index.css";
 import HomePage from "./pages/Homepage";
 import TokenTracker from "./pages/TokenTracker";
-import Governance from "./pages/Governance";
+import Governance from "./pages/Governance.jsx";
 
 const themes = {
   dark: `${process.env.PUBLIC_URL}/dark-theme.css`,

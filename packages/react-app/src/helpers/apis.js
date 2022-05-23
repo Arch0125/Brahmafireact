@@ -3,11 +3,35 @@ import { COVALENT_API_KEY, COVALENT_BASE_URL, ETHERSCAN_API_KEY, ETHERSCAN_BASE_
 const axios = require("axios");
 const moment = require("moment");
 
+
+//API Calls
 export const getAddressInfoFromEtherscan = async address => {
   const endpoint = `${ETHERSCAN_BASE_URL}?module=account&action=tokentx&address=${address}&sort=asc&apikey=${ETHERSCAN_API_KEY}`;
 
   const transactions = (await axios.get(endpoint))?.data?.result;
 };
+
+export const getCastVoteDetails = async(address) => {
+  const endpoint = `https://api.etherscan.io/api?module=account&action=txlist&address=0xA2BF1B0a7E079767B4701b5a1D9D5700eB42D1d1&startblock=0&endblock=99999999&page=1&offset=1000&sort=asc&apikey=ID5DKPHJ6SYM1UQDK1IKECAXKIPPC9EX2C`;
+  var votedetails = (await axios.get(endpoint))?.data?.result;
+  var uservotes = [];
+  const numVotes = votedetails.length;
+  for(let i=0;i<numVotes;i++){
+    if((votedetails[i].to)==='0x408ed6354d4973f66138c91495f2f2fcbd8724c3'){
+      var timestamp = new Date(votedetails[i].timeStamp * 1000);
+      var humandatestamp = timestamp.toLocaleString();
+      var uservotedetails={
+        "blockNumber":votedetails[i].blockNumber,
+        "voter":votedetails[i].from,
+        "timestamp":humandatestamp,
+        "txhash":votedetails[i].hash,
+      };
+      uservotes.push(uservotedetails);
+    }
+  }
+  console.log(uservotes);
+  return votedetails;
+}
 
 export const getHoldingTimeInfoByAddress = async (address, contractAddress) => {
   const endpoint = `${ETHERSCAN_BASE_URL}?module=account&action=tokentx&contractaddress=${contractAddress}&address=${address}&sort=asc&apikey=${ETHERSCAN_API_KEY}`;
